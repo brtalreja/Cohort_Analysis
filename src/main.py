@@ -6,3 +6,7 @@ import plotly.graph_objects as go
 import plotly.io as pio
 
 pio.templates.default = "plotly_white"
+
+data = pd.read_csv("../data/cohorts.csv")
+
+print(data.head())
