@@ -4,6 +4,8 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 import plotly.io as pio
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 pio.templates.default = "plotly_white"
 
@@ -61,3 +63,36 @@ figure.update_layout(title = 'Trend of New Users and Returning Users Over Time',
 figure.show()
 
 figure.write_image("../output/Trend_Plot_New_users_Returning_users.png")
+
+#Trend of duration over time
+figure = go.Figure()
+
+figure.add_trace(go.Scatter(
+                x = data['Date'],
+                y = data['Duration Day 1'],
+                mode = 'lines+markers',
+                name = 'Duration Day 1'))
+
+figure.add_trace(go.Scatter(
+                x = data['Date'],
+                y = data['Duration Day 7'],
+                mode = 'lines+markers',
+                name = 'Duration Day 7'))
+
+figure.update_layout(title = 'Trend of Duration Over Time',
+                     xaxis_title = 'Date',
+                     yaxis_title = 'Duration')
+
+figure.show()
+
+figure.write_image("../output/Trend_Plot_Duration.png")
+
+#Correlation Analysis
+correlation_matrix = data.corr()
+
+plt.figure(figsize=(10,8))
+sns.heatmap(correlation_matrix, annot = True, cmap = "coolwarm", fmt = ".2f")
+plt.title('Correlation Plot of Metrics')
+plt.show()
+
+plt.savefig("../output/Correlation_Plot.png")
