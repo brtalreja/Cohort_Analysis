@@ -34,4 +34,30 @@ print(data_types)
 stats = data.loc[:, data.columns != "Date"].describe()
 print(stats)
 
-# COMMENT: 
+# COMMENT:
+# All the metrics show significant variability. While the average numbers are high, there is a broad range which indicates diversity in user engagement and variation in user engagement from day to day.
+
+#EDA
+
+#Trend analysis
+figure = go.Figure()
+
+figure.add_trace(go.Scatter(
+                x = data['Date'],
+                y = data['New users'],
+                mode = 'lines+markers',
+                name = 'New users'))
+
+figure.add_trace(go.Scatter(
+                x = data['Date'],
+                y = data['Returning users'],
+                mode = 'lines+markers',
+                name = 'Returning users'))
+
+figure.update_layout(title = 'Trend of New Users and Returning Users Over Time',
+                     xaxis_title = 'Date',
+                     yaxis_title = 'Number of Users')
+
+figure.show()
+
+figure.write_image("../output/Trend_Plot_New_users_Returning_users.png")
