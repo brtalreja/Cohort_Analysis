@@ -96,3 +96,16 @@ plt.title('Correlation Plot of Metrics')
 plt.show()
 
 plt.savefig("../output/Correlation_Plot.png")
+
+#Cohort Analysis
+
+data['Week'] = data['Date'].dt.isocalendar().week
+
+weekly_averages = data.groupby('Week').agg({
+    'New users': 'mean',
+    'Returning users': 'mean',
+    'Duration Day 1': 'mean',
+    'Duration Day 7': 'mean'
+}).reset_index()
+
+print(weekly_averages.head())
