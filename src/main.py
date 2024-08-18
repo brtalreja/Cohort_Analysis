@@ -64,6 +64,8 @@ figure.show()
 
 figure.write_image("../output/Trend_Plot_New_users_Returning_users.png")
 
+#COMMENT:
+
 #Trend of duration over time
 figure = go.Figure()
 
@@ -87,15 +89,20 @@ figure.show()
 
 figure.write_image("../output/Trend_Plot_Duration.png")
 
+#COMMENT:
+
 #Correlation Analysis
 correlation_matrix = data.corr()
 
 plt.figure(figsize=(10,8))
 sns.heatmap(correlation_matrix, annot = True, cmap = "coolwarm", fmt = ".2f")
 plt.title('Correlation Plot of Metrics')
-plt.show()
 
 plt.savefig("../output/Correlation_Plot.png")
+
+plt.show()
+
+#COMMENT:
 
 #Cohort Analysis
 
@@ -109,3 +116,47 @@ weekly_averages = data.groupby('Week').agg({
 }).reset_index()
 
 print(weekly_averages.head())
+
+figure1 = px.line(weekly_averages,
+                  x = 'Week',
+                  y = ['New users', 'Returning users'],
+                  markers=True,
+                  labels = {'value': 'Average Number of Users'},
+                  title = 'Weekly Average of New vs. Returning Users')
+
+figure1.update_xaxes(title = 'Week of the Year')
+figure1.update_yaxes(title = 'Average Number of Users')
+
+figure2 = px.line(weekly_averages,
+                  x = 'Week',
+                  y = ['Duration Day 1', 'Duration Day 7'],
+                  markers=True,
+                  labels = {'value': 'Average Duration'},
+                  title = 'Weekly Average of Duration (Day1 vs. Day 7)')
+
+figure2.update_xaxes(title = 'Week of the Year')
+figure2.update_yaxes(title = 'Averahe Duration')
+
+figure1.show()
+figure1.write_image("../output/Weekly_Average_Users.png")
+
+figure2.show()
+figure2.write_image("../output/Weekly_Average_Duration.png")
+
+#COMMENT:
+
+#Cohort Matrix
+
+cohort_matrix = weekly_averages.set_index('Week')
+
+plt.figure(figsize=(12,8))
+
+sns.heatmap(cohort_matrix, annot = True, cmap = "coolwarm", fmt = ".1f")
+plt.title('Cohort Matrix of Weekly Averages')
+plt.ylabel('Week of the Year')
+
+plt.savefig("../output/Cohort_Matrix_plot.png")
+
+plt.show()
+
+#COMMENT:
