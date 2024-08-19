@@ -190,3 +190,18 @@ figure.show()
 
 figure.write_image('../output/Returning_Users_Day1_Day7.png')
 
+#Rolling Averages
+
+data['Rolling Avg New Users'] = data['New users'].rolling(window=7).mean()
+data['Rolling Avg Returning Users'] = data['Returning users'].rolling(window=7).mean()
+
+figure = go.Figure()
+figure.add_trace(go.Scatter(x=data['Date'], y=data['Rolling Avg New Users'], mode='lines+markers', name='Rolling Avg New Users'))
+figure.add_trace(go.Scatter(x=data['Date'], y=data['Rolling Avg Returning Users'], mode='lines+markers', name='Rolling Avg Returning Users'))
+
+figure.update_layout(title='Rolling Average of Users',
+                     xaxis_title='Date',
+                     yaxis_title='Number of Users')
+figure.show()
+
+figure.write_image('../output/Rolling_Averages_Day1_Day7.png')
