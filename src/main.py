@@ -160,3 +160,33 @@ plt.savefig("../output/Cohort_Matrix_plot.png")
 plt.show()
 
 #COMMENT:
+
+#Retention Rate Analysis
+
+data['Retention Rate'] = (data['Returning users'] / data['New users']) * 100
+print(data[['Date', 'Retention Rate']].head())
+
+#Chrun Rate Analysis
+
+data['Churn Rate'] = 100 - data['Retention Rate']
+print(data[['Date', 'Churn Rate']].head())
+
+#User growth rate analysis
+
+data['New User Growth Rate'] = data['New users'].pct_change() * 100
+print(data[['Date', 'New User Growth Rate']].head())
+
+#Daily Engagement Analysis
+
+figure = px.scatter(data, x='New users', y=['Duration Day 1', 'Duration Day 7'], trendline='ols',
+                    title='New Users vs. Duration on Day 1 and Day 7')
+figure.show()
+
+figure.write_image('../output/New_Users_Day1_Day7.png')
+
+figure = px.scatter(data, x='Returning users', y=['Duration Day 1', 'Duration Day 7'], trendline='ols',
+                    title='Returning Users vs. Duration on Day 1 and Day 7')
+figure.show()
+
+figure.write_image('../output/Returning_Users_Day1_Day7.png')
+
