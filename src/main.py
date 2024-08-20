@@ -65,6 +65,12 @@ figure.show()
 figure.write_image("../output/Trend_Plot_New_users_Returning_users.png")
 
 #COMMENT:
+# The number of new users show a repetitive pattern with peaks and troughs. This can be due to implementing marketing campaigns, any seasonal trends, or other factors which drive new user acquisition.
+# There is a need to understand why there was a spike in the number of new users and how to sustain that growth.
+# Most of the times the returning number of users were less fluctuating. This can be good and bad.
+# Good because the numbers are consistent which means a good retention rate.
+# Bad because there is no increase in retention rate.
+# A significant difference is there in the number of new users and returning users which indicates high churn rate.
 
 #Trend of duration over time
 figure = go.Figure()
@@ -166,15 +172,21 @@ plt.show()
 data['Retention Rate'] = (data['Returning users'] / data['New users']) * 100
 print(data[['Date', 'Retention Rate']].head())
 
+#COMMENT:
+
 #Chrun Rate Analysis
 
 data['Churn Rate'] = 100 - data['Retention Rate']
 print(data[['Date', 'Churn Rate']].head())
 
+#COMMENT:
+
 #User growth rate analysis
 
 data['New User Growth Rate'] = data['New users'].pct_change() * 100
 print(data[['Date', 'New User Growth Rate']].head())
+
+#COMMENT:
 
 #Daily Engagement Analysis
 
@@ -189,6 +201,8 @@ figure = px.scatter(data, x='Returning users', y=['Duration Day 1', 'Duration Da
 figure.show()
 
 figure.write_image('../output/Returning_Users_Day1_Day7.png')
+
+#COMMENT:
 
 #Rolling Averages
 
@@ -205,3 +219,5 @@ figure.update_layout(title='Rolling Average of Users',
 figure.show()
 
 figure.write_image('../output/Rolling_Averages_Day1_Day7.png')
+
+#COMMENT:
