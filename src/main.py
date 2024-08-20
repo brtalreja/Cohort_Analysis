@@ -118,7 +118,14 @@ plt.savefig("../output/Correlation_Plot.png")
 
 plt.show()
 
-#COMMENT:
+#COMMENT: 
+# There is a strong positive correlation between new users and returning users suggesting that on days when more new users join, more existing users also return to the platform.
+# There is a strong negative correlation between the date and Duration Day 7 which implies that over time, the duration that users spend on the platform on the 7th day after their first interaction decreases significantly.
+# This is a concerning trend as it indicates a decline in user satisfaction over time.
+
+# The strong positive correlation between new and returning users presents an opportunity to capitalize on days with high traffic.
+# It may be useful to analyze user feedback or behavior patterns to identify any issues leading to this trend.
+# Another possible strategies to look into are: continuous monitoring of returning user trends and optimizing day 1 experience for new users.
 
 #Cohort Analysis
 
@@ -156,10 +163,20 @@ figure2.update_yaxes(title = 'Averahe Duration')
 figure1.show()
 figure1.write_image("../output/Weekly_Average_Users.png")
 
+#COMMENT:
+# There is a noticeable increase in the number of new users then a slight decline and finishing with a steep incline.
+# The number of returning users remains relatively stable across the weeks with minor fluctuations.
+# A small upward trend is observed in Week 47, but the increase is modest compared to the increase in the number of new users.
+# New users consistently outnumber returning users across all weeks.
+
 figure2.show()
 figure2.write_image("../output/Weekly_Average_Duration.png")
 
 #COMMENT:
+# The average duration on Day 1 remains relatively stable between weeks 43 and 45 with a slight increase in week 46. However, there is a noticeable drop in week 47. This suggests that new users are generally engaged on the platform.
+# The average duration on Day 7 shows a consistent decline from week 43 to week 47. By week 47, the average duration on Day 7 drops to almost zero, indicating a significant drop-off in user engagement after the first week of use.
+# While the duration on Day 1 remains relatively stable, the sharp decline in Day 7 duration highlights a growing divergence between the initial and long-term engagement.
+
 
 #Cohort Matrix
 
