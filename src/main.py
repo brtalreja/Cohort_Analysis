@@ -37,7 +37,8 @@ stats = data.loc[:, data.columns != "Date"].describe()
 print(stats)
 
 # COMMENT:
-# All the metrics show significant variability. While the average numbers are high, there is a broad range which indicates diversity in user engagement and variation in user engagement from day to day.
+# All the metrics show significant variability.
+#  While the average numbers are high, there is a broad range which indicates diversity in user engagement and variation in user engagement from day to day.
 
 #EDA
 
@@ -177,7 +178,6 @@ figure2.write_image("../output/Weekly_Average_Duration.png")
 # The average duration on Day 7 shows a consistent decline from week 43 to week 47. By week 47, the average duration on Day 7 drops to almost zero, indicating a significant drop-off in user engagement after the first week of use.
 # While the duration on Day 1 remains relatively stable, the sharp decline in Day 7 duration highlights a growing divergence between the initial and long-term engagement.
 
-
 #Cohort Matrix
 
 cohort_matrix = weekly_averages.set_index('Week')
@@ -193,27 +193,32 @@ plt.savefig("../output/Cohort_Matrix_plot.png")
 plt.show()
 
 #COMMENT:
+# There is an upward trend in the new user numbers which culminates in Week 47 with the highest recorded value (4267.8).
+# The number of returning users also increases over time, although at a slower rate compared to new users.
+# The average session duration on the first day (Day 1) fluctuates slightly across the weeks, with no clear upward or downward trend with Week 46 having the highest average duration and Week 47 drops to the lowest (174.2).
+# The average session duration by Day 7 shows a sharp decline, especially in Week 47, where it drops to 0.0.
+# Additionally, the noticeable drop-off in engagement from Day 1 to Day 7 across all weeks, suggests difficulties in maintaining user interest over time.
 
 #Retention Rate Analysis
 
 data['Retention Rate'] = (data['Returning users'] / data['New users']) * 100
 print(data[['Date', 'Retention Rate']].head())
 
-#COMMENT:
+#COMMENT: Sometime the retention rate peaks at 42.65% of new users returning to the platform. Over time, the same rate drops to 40.40%.
 
 #Chrun Rate Analysis
 
 data['Churn Rate'] = 100 - data['Retention Rate']
 print(data[['Date', 'Churn Rate']].head())
 
-#COMMENT:
+#COMMENT: The churn rates hovered around 58-59% during the period which means that a larger portion of users did not return.
 
 #User growth rate analysis
 
 data['New User Growth Rate'] = data['New users'].pct_change() * 100
 print(data[['Date', 'New User Growth Rate']].head())
 
-#COMMENT:
+#COMMENT: The growth rate is a false indicator of an increase in new users compared to the previous day.
 
 #Daily Engagement Analysis
 
@@ -223,6 +228,11 @@ figure.show()
 
 figure.write_image('../output/New_Users_Day1_Day7.png')
 
+#COMMENT:
+# This plot reiterates the insights from previous plots, the number of new users on Day 1 clearly show an increase. This could be because of marketing campaigns, any seasonal trends, or other factors which drive new user acquisition.
+# There is a need to understand how to sustain that incline in the number of new users to grow the business.
+# A declining trend can be clearly seen in the number of new users joining on Day 7th which means that whatever strategy worked on Day1 might not be working to gain new users on Day 7th. There might be a need of new strategy.
+
 figure = px.scatter(data, x='Returning users', y=['Duration Day 1', 'Duration Day 7'], trendline='ols',
                     title='Returning Users vs. Duration on Day 1 and Day 7')
 figure.show()
@@ -230,6 +240,9 @@ figure.show()
 figure.write_image('../output/Returning_Users_Day1_Day7.png')
 
 #COMMENT:
+# This plot also reiterates the insights from previous plots, the number of returning users on Day 1 and Day 7 clearly show a flat rate.
+# Along with that the number of returning users are more on day 1 and less on day 7 which means this number is declining.
+# There is a need to understand how to keep the existing users engaged and increase their retention rate on the platform.
 
 #Rolling Averages
 
@@ -248,3 +261,8 @@ figure.show()
 figure.write_image('../output/Rolling_Averages_Day1_Day7.png')
 
 #COMMENT:
+# The dip in new users around mid-November could be due to several factors, such as changes in marketing efforts, seasonality, or external events.
+# Analyzing this period can help identify what caused the decline and how to prevent similar dips in the future and vice versa for the strong end in the end of November.
+# Despite the fluctuations in new user numbers, returning user numbers remain relatively constant, indicating that while acquisition is working, retention strategies could be improved.
+# It is important to ensure that the platform is equipped to handle sudden increases in traffic without compromising user experience.
+# Smooth onboarding and high-quality content during these peaks can help convert new users into loyal, returning users.
