@@ -96,6 +96,16 @@ figure.show()
 figure.write_image("../output/Trend_Plot_Duration.png")
 
 #COMMENT:
+# The duration on Day 1 shows less fluctuations compared to day 7. There is a big spike around mid-November which means that duration significantly increased at that time.
+# There is a noticeable downward trend towards the end of the period meaning that initial user engagement is decreasing over time. This could be due to a variety of factors, such as changes in the user experience, content, or platform performance.
+# The duration on Day 7 shows more variability and a slight decreasing trend overall. There are periods where the Day 7 duration drops to zero, indicating that users are not returning or spending time on the platform a week after their initial use.
+# The sharp drop to zero towards the end of the period is particularly concerning, as it suggests a failure to retain users beyond the first day during this time frame.
+# The Day 7 duration is consistently lower than the Day 1 duration, indicating a decline in user engagement over time. This suggests that users may find less value or are less interested in returning to the platform after their initial experience.
+# The wide gap between Day 1 and Day 7 durations in certain periods indicates that the initial interest is not translating into long-term engagement.
+
+# Retention strategies such as follow-up emails, push notifications, or personalized content should be implemented to encourage users to return to the platform.
+# The initial experience (Day 1) is crucial in setting the tone for continued engagement. Enhancing the onboarding process, providing clear guidance on how to use the platform, and highlighting key features could help boost the retention rate.
+# Perform a detailed analysis of the content and user journey to identify any pain points where users might be dropping off to understand user's perspective.
 
 #Correlation Analysis
 correlation_matrix = data.corr()
