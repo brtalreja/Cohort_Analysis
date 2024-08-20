@@ -1,3 +1,5 @@
+# Cohort Analysis
+
 ## Overview
 
 This project focuses on analyzing user engagement patterns on a platform using various data analysis techniques. The primary goal is to understand user behavior over time, identify trends, and provide insights into user retention and engagement strategies. The analysis includes trend analysis, correlation analysis, cohort analysis, and daily engagement analysis, leveraging visualizations to derive actionable insights.
